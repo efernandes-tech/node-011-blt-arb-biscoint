@@ -25,6 +25,11 @@ async function call(endpoint) {
     return result.data;
 }
 
+async function ticker(base = 'BTC', quote = 'BRL') {
+    return call(`ticker?base=${base}&quote=${quote}`);
+}
+
 module.exports = {
-    meta
+    meta,
+    ticker
 }
