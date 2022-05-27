@@ -9,7 +9,7 @@
 ## Run:
 
 ```
-node index.js
+npm start
 ```
 
 ## Notes:

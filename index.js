@@ -1,3 +1,11 @@
+const apiKeyCheck = process.env.API_KEY;
+const apiSecretCheck = process.env.API_SECRET;
+
+if (!apiKeyCheck || !apiSecretCheck) {
+    console.log(`Crendentials not found!`);
+    process.exit(0);
+}
+
 const biscoint = require("./biscoint");
 
 function percent(value1, value2) {
