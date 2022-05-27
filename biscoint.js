@@ -54,8 +54,20 @@ function balance() {
     return call("balance", null, "POST");
 }
 
+function offer(amount, op, base = "BTC") {
+    const isQuote = op === 'buy' ? true : false;
+    return call("offer", {
+        amount,
+        op,
+        isQuote,
+        base,
+        quote: "BRL"
+    }, "POST");
+}
+
 module.exports = {
     meta,
     ticker,
-    balance
+    balance,
+    offer
 }

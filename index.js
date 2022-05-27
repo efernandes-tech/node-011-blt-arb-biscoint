@@ -28,6 +28,9 @@ async function doCycle() {
         if (!BRL) {
             await loadBalance();
         }
+        console.log('Getting a Buy Offer');
+        const result = await biscoint.offer(BRL, 'buy');
+        console.log(result.data);
     } catch (err) {
         console.error(err.response ? err.response.data : err.message);
     }
