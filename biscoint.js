@@ -65,9 +65,16 @@ function offer(amount, op, base = "BTC") {
     }, "POST");
 }
 
+function confirmOffer(offerId) {
+    return call("offer/confirm", {
+        offerId
+    }, "POST");
+}
+
 module.exports = {
     meta,
     ticker,
     balance,
-    offer
+    offer,
+    confirmOffer
 }
