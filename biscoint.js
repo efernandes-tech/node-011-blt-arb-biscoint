@@ -50,7 +50,12 @@ async function ticker(base = 'BTC', quote = 'BRL') {
     return call(`ticker?base=${base}&quote=${quote}`);
 }
 
+function balance() {
+    return call("balance", null, "POST");
+}
+
 module.exports = {
     meta,
-    ticker
+    ticker,
+    balance
 }
