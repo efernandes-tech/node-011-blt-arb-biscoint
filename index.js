@@ -6,7 +6,7 @@ if (!apiKeyCheck || !apiSecretCheck) {
     process.exit(0);
 }
 
-let BRL, BTC;
+let BRL, BTC, ETH, base = 'BTC';
 
 const biscoint = require("./biscoint");
 
@@ -19,8 +19,10 @@ async function loadBalance() {
     const result = await biscoint.balance();
     BRL = result.data.BRL;
     BTC = result.data.BTC;
+    ETH = result.data.ETH;
     console.log(`BRL: ${BRL}`);
-    console.log(`BTC: ${BTC}`);
+    if (base == 'BTC') console.log(`BTC: ${BTC}`);
+    if (base == 'ETH') console.log(`ETH: ${ETH}`);
 }
 
 async function doCycle() {
@@ -30,10 +32,10 @@ async function doCycle() {
         }
 
         console.log('Getting a Buy Offer');
-        const buyOffer = await biscoint.offer(BRL, 'buy');
+        const buyOffer = await biscoint.offer(BRL, 'buy', base);
 
         console.log('Getting a Sell Offer');
-        const sellOffer = await biscoint.offer(buyOffer.data.baseAmount, 'sell');
+        const sellOffer = await biscoint.offer(buyOffer.data.baseAmount, 'sell', base);
 
         console.log('Buy Price: ' + buyOffer.data.efPrice);
         console.log('Sell Price: ' + sellOffer.data.efPrice);
@@ -41,11 +43,14 @@ async function doCycle() {
         const gap = percent(buyOffer.data.efPrice, sellOffer.data.efPrice);
         console.log(`%: ${gap.toFixed(2)}`);
 
-        if (gap > 10) {
+        if (gap >= 1) {
+            console.log("SHOOT!")
             const buyResult = await biscoint.confirmOffer(buyOffer.data.offerId);
             const sellResult = await biscoint.confirmOffer(sellOffer.data.offerId);
-            console.log(sellResult);
-            loadBalance();
+            console.log('buyResult', buyResult);
+            console.log('sellResult', sellResult);
+            await loadBalance();
+            process.exit();
         }
 
     } catch (err) {
@@ -53,6 +58,6 @@ async function doCycle() {
     }
 }
 
-setInterval(doCycle, 5010);
+setInterval(doCycle, 4010);
 
 doCycle();
