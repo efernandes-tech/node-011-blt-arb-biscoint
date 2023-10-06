@@ -1,5 +1,5 @@
 {
-  "name": "arb-argostraderbot",
+  "name": "node-011-blt-arb-biscoint",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/argostraderbot/arb-argostraderbot.git"
+    "url": "git+https://github.com/efernandes-tech/node-011-blt-arb-biscoint.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/argostraderbot/arb-argostraderbot/issues"
+    "url": "https://github.com/efernandes-tech/node-011-blt-arb-biscoint/issues"
   },
-  "homepage": "https://github.com/argostraderbot/arb-argostraderbot#readme",
+  "homepage": "https://github.com/efernandes-tech/node-011-blt-arb-biscoint#readme",
   "dependencies": {
     "axios": "^0.27.2",
     "crypto-js": "^4.1.1",
